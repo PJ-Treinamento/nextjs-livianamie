@@ -20,8 +20,8 @@ export const GlobalStyles = createGlobalStyle`
     *, button, input {
         border: 0;
         background: none;
-        font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
         outline: 0;
+        font-family: 'Poppins', sans-serif;
     }
     body {
         background: url(/background.svg) no-repeat center center fixed;
