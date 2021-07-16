@@ -10,24 +10,26 @@ type ArrayPiuProps = {
     pius: IPiu[];
     setTimelinePius: (array: IPiu[]) => void;
     user: IUser;
+    users: IUser[];
 };
 
 const FeedTemplate: React.FC<ArrayPiuProps> = ({
     pius,
     setTimelinePius,
-    user
+    user,
+    users
 }) => {
     return (
         <Container>
             <Wrapper>
-                <Header />
+                <Header users={users} />
                 <MiddleWrapper>
                     <Feed
                         user={user}
                         pius={pius}
                         setTimelinePius={setTimelinePius}
                     />
-                    <SideMenu />
+                    <SideMenu user={user} />
                 </MiddleWrapper>
                 <BottomMenu />
             </Wrapper>

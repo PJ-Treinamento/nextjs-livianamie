@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { House, Search, Bell, Star, Envelope, Gear } from '../../styles/Icons';
+import Image from 'next/image';
+import { House, Search, Bell, Star, Envelope, Gear } from '../../styles/icons';
 
 export const SideMenuWrapper = styled.div`
     display: none;
@@ -75,10 +76,10 @@ export const Option = styled.div`
 
         @media (min-width: 800px) {
             display: inline;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         @media (min-width: 1200px) {
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             margin-left: 1rem;
         }
     }
@@ -111,8 +112,13 @@ export const ProfileInfos = styled.div`
         }
     }
 `;
+export const ProfilePicture = styled(Image)`
+    border-radius: 50%;
+    cursor: pointer;
+`;
 export const Names = styled.div`
     display: none;
+    margin-left: 1rem;
 
     > strong {
         font-size: 1.1rem;
@@ -129,14 +135,14 @@ export const Names = styled.div`
         }
 
         @media (min-width: 800px) {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         @media (min-width: 1200px) {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
         }
     }
     > span {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
 
         padding: 0.2rem;
 
@@ -147,10 +153,10 @@ export const Names = styled.div`
         }
 
         @media (min-width: 800px) {
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         @media (min-width: 1200px) {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
         }
     }
 

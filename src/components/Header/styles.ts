@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { List, Earlybirds, XCircle } from '../../styles/icons';
 
-// interface IPopUpProps {
-//     isOpen: boolean;
-// }
+type IPopUpProps = {
+    isOpen: boolean;
+};
 
 export const Container = styled.header`
     z-index: 2;
@@ -121,13 +121,13 @@ export const SearchFeature = styled.div`
             margin-right: 3.5rem;
             padding: 0.1rem 1rem;
 
-            font-size: 1.4rem;
+            font-size: 1.6rem;
         }
     }
 `;
 
-export const PopUpWrapper = styled.div`
-    display: none;
+export const PopUpWrapper = styled.div<IPopUpProps>`
+    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
 

@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import image from '../../../public/background.svg';
+import { IUser } from 'models';
+import ProfileImage from '../../../public/profile.svg';
 import {
     SideMenuWrapper,
     Menu,
@@ -11,10 +11,18 @@ import {
     DMIcon,
     ConfigurationsIcon,
     ProfileInfos,
+    ProfilePicture,
     Names
 } from './styles';
 
-const SideMenu: React.FC = () => {
+type SideMenuProps = {
+    user: IUser;
+};
+
+const SideMenu: React.FC<SideMenuProps> = ({ user }) => {
+    let profileImage = user.photo;
+    if (profileImage === '.....') profileImage = ProfileImage;
+
     return (
         <SideMenuWrapper>
             <Menu>
@@ -45,7 +53,12 @@ const SideMenu: React.FC = () => {
             </Menu>
 
             <ProfileInfos>
-                <Image src={image} alt="Foto de perfil" />
+                <ProfilePicture
+                    src={profileImage || ProfileImage}
+                    alt="Foto de perfil"
+                    width={60}
+                    height={60}
+                />
                 <Names>
                     <strong>Lívia Namie</strong>
                     <span>@livianamie_</span>

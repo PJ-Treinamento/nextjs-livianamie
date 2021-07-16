@@ -8,14 +8,16 @@ import FeedTemplate from '../../template/Feed';
 type FeedProps = {
     pius: IPiu[];
     user: IUser;
+    users: IUser[];
 };
 
-const Feed: NextPage<FeedProps> = ({ pius, user }) => {
+const Feed: NextPage<FeedProps> = ({ pius, user, users }) => {
     const [timelinePius, setTimelinePius] = useState<IPiu[]>(pius);
 
     return (
         <FeedTemplate
             user={user}
+            users={users}
             pius={timelinePius}
             setTimelinePius={setTimelinePius}
         />
@@ -44,16 +46,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     });
     const userResponse = await api.get(`/users?username=${username}`, {
         headers: {
-            Authorization: `Bearer: ${token}`
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const usersListResponse = await api.get('/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
         }
     });
     const pius: IPius = response.data;
     const user: IUser = userResponse.data[0];
+    const users: IUser[] = usersListResponse.data;
 
     return {
         props: {
             pius,
-            user
+            user,
+            users
         }
     };
 };
