@@ -1,3 +1,4 @@
+import { IPiu } from 'models';
 import Image from 'next/image';
 import image from '../../../public/background.svg';
 import {
@@ -16,24 +17,26 @@ import {
     TrashIcon
 } from './styles';
 
-const Piu: React.FC = () => {
+type PiuProps = {
+    piu: IPiu;
+};
+
+const Piu: React.FC<PiuProps> = ({ piu }) => {
     return (
         <PiuWrapper>
             <Image src={image} alt="Foto de perfil" width={50} height={50} />
             <PiuContent>
                 <TopContent>
                     <UserInfos>
-                        <strong>Lívia Namie</strong>
-                        <span>@livianamie_</span>
+                        <strong>
+                            {piu.user.first_name} {piu.user.last_name}
+                        </strong>
+                        <span>@{piu.user.username}</span>
                     </UserInfos>
                     <DotsIcon />
                 </TopContent>
 
-                <p>
-                    Loskjdc ksdc sdjcs sj js dscjdncjdncjs djcnjdsncksd
-                    cdskcjsdkckscds cdskncksjdcksdjc cdcjdncjadncksjdncs
-                    cdscjsdncksjcnsdc sdjcnsdkcjnsdkc sdjcnskdjcnskdc
-                </p>
+                <p>{piu.text} </p>
 
                 <Interactions>
                     <Status>
