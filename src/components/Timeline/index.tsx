@@ -1,9 +1,14 @@
-import { IPiu, IPius } from 'models';
+import { IPiu } from 'models';
 import { useState } from 'react';
 import Piu from '../Piu';
 import { TimelineWrapper, Tab, TimelineSections } from './styles';
 
-const Timeline: React.FC<IPius> = ({ pius }) => {
+type ArrayPiuProps = {
+    pius: IPiu[];
+    setTimelinePius: (array: IPiu[]) => void;
+};
+
+const Timeline: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius }) => {
     const [search, setSearch] = useState('');
 
     return (
@@ -35,7 +40,14 @@ const Timeline: React.FC<IPius> = ({ pius }) => {
                         .toLowerCase()
                         .includes(search.toLowerCase())
                 ) {
-                    return <Piu key={piu.id} piu={piu} />;
+                    return (
+                        <Piu
+                            key={piu.id}
+                            pius={pius}
+                            setTimelinePius={setTimelinePius}
+                            piu={piu}
+                        />
+                    );
                 }
                 return <></>;
             })}

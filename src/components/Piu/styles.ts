@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Image from 'next/image';
 import {
     ThreeDots,
     Chat,
@@ -31,35 +32,13 @@ export const PiuWrapper = styled.div`
     @media (min-width: 1200px) {
         padding: 1.5rem;
     }
-
-    > img {
-        width: 3rem;
-        height: 3rem;
-
-        margin-right: 1rem;
-
-        object-fit: cover;
-
-        border: 0.15rem solid #7c00f3;
-        border-radius: 50%;
-
-        cursor: pointer;
-
-        @media (min-width: 500px) {
-            width: 3.4rem;
-            height: 3.4rem;
-        }
-        @media (min-width: 800px) {
-            width: 3.8rem;
-            height: 3.8rem;
-        }
-        @media (min-width: 1200px) {
-            width: 4rem;
-            height: 4rem;
-
-            margin-right: 1.5rem;
-        }
-    }
+`;
+export const ProfilePictureWrapper = styled.div`
+    margin-right: 1rem;
+`;
+export const ProfilePicture = styled(Image)`
+    border-radius: 50%;
+    cursor: pointer;
 `;
 export const PiuContent = styled.div`
     display: flex;
@@ -69,28 +48,6 @@ export const PiuContent = styled.div`
     width: 100%;
 
     margin-top: 0.2rem;
-
-    > p {
-        font-size: 1rem;
-        margin: 0.2rem 0;
-        height: fit-content;
-
-        word-break: break-all;
-
-        @media (min-width: 500px) {
-            font-size: 1.1rem;
-
-            margin: 0.7rem 0;
-        }
-        @media (min-width: 800px) {
-            font-size: 1.2rem;
-
-            margin: 0.9rem 0;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.4rem;
-        }
-    }
 `;
 export const TopContent = styled.div`
     display: flex;
@@ -105,49 +62,70 @@ export const UserInfos = styled.div`
     line-height: 1;
 
     width: 70%;
-
-    > strong,
-    span {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-    > strong {
-        font-size: 1rem;
-        margin-right: 0.3rem;
-
-        @media (min-width: 500px) {
-            font-size: 1.1rem;
-        }
-        @media (min-width: 800px) {
-            font-size: 1.2rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.4rem;
-        }
-    }
-
-    > span {
-        font-size: 0.8rem;
-
-        cursor: pointer;
-
-        &:hover {
-            color: var(--darker-purple);
-        }
-
-        @media (min-width: 500px) {
-            font-size: 0.9rem;
-        }
-        @media (min-width: 800px) {
-            font-size: 1rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.1rem;
-        }
-    }
 `;
 
+const UserCSS = css`
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+`;
+
+export const UserNames = styled.strong`
+    ${UserCSS}
+    font-size: 1.2rem;
+    margin-right: 0.4rem;
+
+    @media (min-width: 500px) {
+        font-size: 1.3rem;
+    }
+    @media (min-width: 800px) {
+        font-size: 1.4rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.6rem;
+    }
+`;
+export const UserUsername = styled.span`
+    ${UserCSS}
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    &:hover {
+        color: var(--darker-purple);
+    }
+
+    @media (min-width: 500px) {
+        font-size: 1rem;
+    }
+    @media (min-width: 800px) {
+        font-size: 1.1rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.2rem;
+    }
+`;
+export const PiuText = styled.p`
+    font-size: 1.2rem;
+    margin: 0.2rem 0;
+    height: fit-content;
+
+    word-break: break-all;
+
+    @media (min-width: 500px) {
+        font-size: 1.3rem;
+
+        margin: 0.7rem 0;
+    }
+    @media (min-width: 800px) {
+        font-size: 1.4rem;
+
+        margin: 0.9rem 0;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.6rem;
+    }
+`;
 export const Interactions = styled.div`
     display: flex;
     align-content: center;
@@ -169,7 +147,7 @@ export const Interactions = styled.div`
     }
 `;
 const iconCSS = css`
-    width: 0.8rem;
+    width: 1rem;
 
     cursor: pointer;
 
@@ -183,26 +161,26 @@ const iconCSS = css`
         width: 1.1rem;
     }
     @media (min-width: 800px) {
-        width: 1.2rem;
+        width: 1.3rem;
     }
     @media (min-width: 1200px) {
-        width: 1.3rem;
+        width: 1.5rem;
     }
 `;
 export const Status = styled.div`
     display: flex;
     align-content: center;
 
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 
     @media (min-width: 500px) {
-        font-size: 0.9rem;
-    }
-    @media (min-width: 800px) {
         font-size: 1rem;
     }
+    @media (min-width: 800px) {
+        font-size: 1.2rem;
+    }
     @media (min-width: 1200px) {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 `;
 export const DotsIcon = styled(ThreeDots)`

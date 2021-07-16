@@ -1,13 +1,18 @@
-import { IPius } from 'models';
+import { IPiu } from 'models';
 import { Main } from './styles';
 import NewPiu from '../NewPiu';
 import Timeline from '../Timeline';
 
-const Feed: React.FC<IPius> = ({ pius }) => {
+type ArrayPiuProps = {
+    pius: IPiu[];
+    setTimelinePius: (array: IPiu[]) => void;
+};
+
+const Feed: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius }) => {
     return (
         <Main>
             <NewPiu />
-            <Timeline pius={pius} />
+            <Timeline pius={pius} setTimelinePius={setTimelinePius} />
         </Main>
     );
 };

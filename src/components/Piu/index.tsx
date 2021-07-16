@@ -1,50 +1,81 @@
 import { IPiu } from 'models';
-import Image from 'next/image';
+import { parseCookies } from 'nookies';
+import { useCallback } from 'react';
+import { getApi } from 'services/axios';
 import ProfileImage from '../../../public/profile.svg';
 import {
     PiuWrapper,
+    ProfilePictureWrapper,
+    ProfilePicture,
     PiuContent,
     TopContent,
     UserInfos,
+    UserNames,
+    UserUsername,
     DotsIcon,
+    PiuText,
     Interactions,
     Status,
     CommentIcon,
     RepiuIcon,
     LikeIcon,
     FavoriteIcon,
-    ShareIcon,
     TrashIcon
 } from './styles';
 
 type PiuProps = {
+    pius: IPiu[];
+    setTimelinePius: (array: IPiu[]) => void;
     piu: IPiu;
 };
 
-const Piu: React.FC<PiuProps> = ({ piu }) => {
+const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu }) => {
+    const api = getApi();
+    const { id } = piu;
+    const { '@Piupiuwer:token': token } = parseCookies();
+    const { '@Piupiuwer:username': username } = parseCookies();
+
     let profileImage = piu.user.photo;
     if (profileImage === '.....') profileImage = ProfileImage;
 
+    const handleDelete = useCallback(() => {
+        pius.forEach(async (piuApi: IPiu, index) => {
+            if (id === piuApi.id) {
+                const newPiusArray = [...pius];
+                newPiusArray.splice(index, 1);
+                setTimelinePius(newPiusArray);
+                await api.delete('/pius', {
+                    data: { piu_id: piuApi.id },
+                    headers: {
+                        Authorization: `Beares: ${token}`
+                    }
+                });
+            }
+        });
+    }, [api, id, pius, setTimelinePius, token]);
+
     return (
         <PiuWrapper>
-            <Image
-                src={profileImage || ProfileImage}
-                alt="Foto de perfil"
-                width={50}
-                height={50}
-            />
+            <ProfilePictureWrapper>
+                <ProfilePicture
+                    src={profileImage || ProfileImage}
+                    alt="Foto de perfil"
+                    width={60}
+                    height={60}
+                />
+            </ProfilePictureWrapper>
             <PiuContent>
                 <TopContent>
                     <UserInfos>
-                        <strong>
+                        <UserNames>
                             {piu.user.first_name} {piu.user.last_name}
-                        </strong>
-                        <span>@{piu.user.username}</span>
+                        </UserNames>
+                        <UserUsername>@{piu.user.username}</UserUsername>
                     </UserInfos>
                     <DotsIcon />
                 </TopContent>
 
-                <p>{piu.text} </p>
+                <PiuText>{piu.text}</PiuText>
 
                 <Interactions>
                     <Status>
@@ -58,8 +89,12 @@ const Piu: React.FC<PiuProps> = ({ piu }) => {
                         <LikeIcon />0
                     </Status>
                     <FavoriteIcon />
-                    <TrashIcon />
-                    <ShareIcon />
+                    {piu.user.username === username ? (
+                        <TrashIcon onClick={handleDelete} />
+                    ) : (
+                        // <ShareIcon />
+                        <></>
+                    )}
                 </Interactions>
             </PiuContent>
         </PiuWrapper>

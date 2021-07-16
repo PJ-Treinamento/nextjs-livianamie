@@ -1,11 +1,16 @@
-import { IPius } from 'models';
+import { IPiu, IPius } from 'models';
 import { GetServerSideProps, NextPage } from 'next';
 import { parseCookies } from 'nookies';
+import { useState } from 'react';
 import { getApi } from 'services/axios';
 import FeedTemplate from '../../template/Feed';
 
 const Feed: NextPage<IPius> = ({ pius }) => {
-    return <FeedTemplate pius={pius} />;
+    const [timelinePius, setTimelinePius] = useState<IPiu[]>(pius);
+
+    return (
+        <FeedTemplate pius={timelinePius} setTimelinePius={setTimelinePius} />
+    );
 };
 
 export default Feed;
