@@ -1,6 +1,14 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
-import { House, Search, Bell, Star, Envelope, Gear } from '../../styles/icons';
+import {
+    House,
+    Search,
+    Bell,
+    Star,
+    Envelope,
+    Gear,
+    Power
+} from '../../styles/icons';
 
 export const SideMenuWrapper = styled.div`
     display: none;
@@ -235,5 +243,12 @@ export const SearchIcon = styled(Search)`
 
     @media (min-width: 800px) {
         display: none;
+    }
+`;
+export const LogOutIcon = styled(Power)`
+    ${iconCSS}
+
+    @media (min-width: 800px) {
+        width: 2rem;
     }
 `;

@@ -15,6 +15,7 @@ export {
     Share,
     Trash,
     ThreeDots,
-    XCircle
+    XCircle,
+    Power
 } from '@styled-icons/bootstrap';
 export { Earlybirds } from '@styled-icons/fa-brands';

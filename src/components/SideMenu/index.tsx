@@ -1,3 +1,4 @@
+import { useAuth } from 'hooks/useAuth';
 import { IUser } from 'models';
 import ProfileImage from '../../../public/profile.svg';
 import {
@@ -12,6 +13,7 @@ import {
     ConfigurationsIcon,
     ProfileInfos,
     ProfilePicture,
+    LogOutIcon,
     Names
 } from './styles';
 
@@ -20,6 +22,8 @@ type SideMenuProps = {
 };
 
 const SideMenu: React.FC<SideMenuProps> = ({ user }) => {
+    const { logout } = useAuth();
+
     let profileImage = user.photo;
     if (profileImage === '.....') profileImage = ProfileImage;
 
@@ -50,8 +54,11 @@ const SideMenu: React.FC<SideMenuProps> = ({ user }) => {
                     <SearchIcon />
                     <strong id="menu-search">Buscar</strong>
                 </Option>
+                <Option onClick={() => logout()}>
+                    <LogOutIcon />
+                    <strong>Sair</strong>
+                </Option>
             </Menu>
-
             <ProfileInfos>
                 <ProfilePicture
                     src={profileImage || ProfileImage}
