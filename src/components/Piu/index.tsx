@@ -1,6 +1,6 @@
 import { IPiu } from 'models';
 import Image from 'next/image';
-import image from '../../../public/background.svg';
+import ProfileImage from '../../../public/profile.svg';
 import {
     PiuWrapper,
     PiuContent,
@@ -22,9 +22,17 @@ type PiuProps = {
 };
 
 const Piu: React.FC<PiuProps> = ({ piu }) => {
+    let profileImage = piu.user.photo;
+    if (profileImage === '.....') profileImage = ProfileImage;
+
     return (
         <PiuWrapper>
-            <Image src={image} alt="Foto de perfil" width={50} height={50} />
+            <Image
+                src={profileImage || ProfileImage}
+                alt="Foto de perfil"
+                width={50}
+                height={50}
+            />
             <PiuContent>
                 <TopContent>
                     <UserInfos>
