@@ -1,6 +1,4 @@
 import axios from 'axios';
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import { CookieParseOptions } from 'cookie';
 import { GetServerSidePropsContext } from 'next';
 import { parseCookies } from 'nookies';
 import { ParsedUrlQuery } from 'querystring';
