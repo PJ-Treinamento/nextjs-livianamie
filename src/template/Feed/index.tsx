@@ -1,4 +1,4 @@
-import { IPiu } from 'models';
+import { IPiu, IUser } from 'models';
 import Header from '../../components/Header';
 import Feed from '../../components/Feed';
 import BottomMenu from '../../components/BottomMenu';
@@ -9,15 +9,24 @@ import { Container, Wrapper, MiddleWrapper } from './styles';
 type ArrayPiuProps = {
     pius: IPiu[];
     setTimelinePius: (array: IPiu[]) => void;
+    user: IUser;
 };
 
-const FeedTemplate: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius }) => {
+const FeedTemplate: React.FC<ArrayPiuProps> = ({
+    pius,
+    setTimelinePius,
+    user
+}) => {
     return (
         <Container>
             <Wrapper>
                 <Header />
                 <MiddleWrapper>
-                    <Feed pius={pius} setTimelinePius={setTimelinePius} />
+                    <Feed
+                        user={user}
+                        pius={pius}
+                        setTimelinePius={setTimelinePius}
+                    />
                     <SideMenu />
                 </MiddleWrapper>
                 <BottomMenu />

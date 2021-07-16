@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import Image from 'next/image';
+
+type IErrorProps = {
+    isWrong?: boolean;
+};
 
 export const NewPiuWrapper = styled.div`
     display: flex;
@@ -99,14 +104,18 @@ export const NewPiuWrapper = styled.div`
         @media (min-width: 800px) {
             padding: 0.5rem 2rem;
 
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
         @media (min-width: 1200px) {
             padding: 0.5rem 2.5rem;
 
-            font-size: 1.6rem;
+            font-size: 1.7rem;
         }
     }
+`;
+export const ProfilePicture = styled(Image)`
+    border-radius: 50%;
+    cursor: pointer;
 `;
 export const Text = styled.div`
     display: flex;
@@ -118,7 +127,7 @@ export const Text = styled.div`
 
     margin: 0 1.5rem;
 `;
-export const Textarea = styled.textarea`
+export const Textarea = styled.textarea<IErrorProps>`
     width: 100%;
     height: 100%;
 
@@ -131,14 +140,16 @@ export const Textarea = styled.textarea`
     outline: auto;
     overflow-y: auto;
 
+    outline-color: ${(props) => (props.isWrong ? 'red' : '#D6CCDC')};
+
     @media (min-width: 500px) {
         font-size: 1.1rem;
     }
     @media (min-width: 800px) {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     @media (min-width: 1200px) {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 `;
 export const Counter = styled.div`
@@ -149,23 +160,24 @@ export const Counter = styled.div`
     width: 100%;
 
     > span {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        color: red;
 
         @media (min-width: 500px) {
-            font-size: 1rem;
-        }
-        @media (min-width: 800px) {
             font-size: 1.1rem;
         }
-        @media (min-width: 1200px) {
+        @media (min-width: 800px) {
             font-size: 1.2rem;
+        }
+        @media (min-width: 1200px) {
+            font-size: 1.3rem;
         }
     }
 `;
 
-export const CounterValue = styled.p`
+export const CounterValue = styled.p<IErrorProps>`
     font-size: 1rem;
-    color: red;
+    color: ${(props) => (props.isWrong ? 'red' : 'black')};
 
     @media (min-width: 500px) {
         font-size: 1.1rem;

@@ -1,7 +1,7 @@
-import { IPiu } from 'models';
+import { IPiu, IUser } from 'models';
 import { parseCookies } from 'nookies';
-import { useCallback } from 'react';
-import { getApi } from 'services/axios';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import api from 'services/api';
 import ProfileImage from '../../../public/profile.svg';
 import {
     PiuWrapper,
@@ -27,16 +27,60 @@ type PiuProps = {
     pius: IPiu[];
     setTimelinePius: (array: IPiu[]) => void;
     piu: IPiu;
+    user: IUser;
 };
 
-const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu }) => {
-    const api = getApi();
+const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu, user }) => {
     const { id } = piu;
     const { '@Piupiuwer:token': token } = parseCookies();
     const { '@Piupiuwer:username': username } = parseCookies();
+    const [likeCount, setLikeCount] = useState(piu.likes.length);
+    const [likeStatus, setLikeStatus] = useState<boolean>();
 
     let profileImage = piu.user.photo;
     if (profileImage === '.....') profileImage = ProfileImage;
+
+    const likedPiusId = useMemo(() => {
+        const likedPius = pius.filter((piuApi) => {
+            const likedPiusUsername = piuApi.likes.map(
+                (users) => users.user.username
+            );
+            return likedPiusUsername.includes(user.username);
+        });
+        return likedPius.map((piuLike) => piuLike.id);
+    }, [pius, user.username]);
+
+    useEffect(() => {
+        setLikeStatus(likedPiusId.includes(piu.id));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleLike = useCallback(() => {
+        pius.forEach(async (piuApi: IPiu) => {
+            if (id === piuApi.id) {
+                const response = await api.post(
+                    '/pius/like',
+                    {
+                        piu_id: piuApi.id
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer: ${token}`
+                        }
+                    }
+                );
+                const { operation } = response.data;
+
+                if (operation === 'like') {
+                    setLikeCount(likeCount + 1);
+                    setLikeStatus(true);
+                } else {
+                    setLikeCount(likeCount - 1);
+                    setLikeStatus(false);
+                }
+            }
+        });
+    }, [pius, id, token, likeCount]);
 
     const handleDelete = useCallback(() => {
         pius.forEach(async (piuApi: IPiu, index) => {
@@ -47,12 +91,12 @@ const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu }) => {
                 await api.delete('/pius', {
                     data: { piu_id: piuApi.id },
                     headers: {
-                        Authorization: `Beares: ${token}`
+                        Authorization: `Bearer ${token}`
                     }
                 });
             }
         });
-    }, [api, id, pius, setTimelinePius, token]);
+    }, [id, pius, setTimelinePius, token]);
 
     return (
         <PiuWrapper>
@@ -86,7 +130,8 @@ const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu }) => {
                         12
                     </Status>
                     <Status>
-                        <LikeIcon />0
+                        <LikeIcon isLiked={likeStatus} onClick={handleLike} />{' '}
+                        {likeCount}
                     </Status>
                     <FavoriteIcon />
                     {piu.user.username === username ? (

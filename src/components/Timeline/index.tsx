@@ -1,4 +1,4 @@
-import { IPiu } from 'models';
+import { IPiu, IUser } from 'models';
 import { useState } from 'react';
 import Piu from '../Piu';
 import { TimelineWrapper, Tab, TimelineSections } from './styles';
@@ -6,9 +6,10 @@ import { TimelineWrapper, Tab, TimelineSections } from './styles';
 type ArrayPiuProps = {
     pius: IPiu[];
     setTimelinePius: (array: IPiu[]) => void;
+    user: IUser;
 };
 
-const Timeline: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius }) => {
+const Timeline: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius, user }) => {
     const [search, setSearch] = useState('');
 
     return (
@@ -42,6 +43,7 @@ const Timeline: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius }) => {
                 ) {
                     return (
                         <Piu
+                            user={user}
                             key={piu.id}
                             pius={pius}
                             setTimelinePius={setTimelinePius}

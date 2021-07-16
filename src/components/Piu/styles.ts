@@ -10,6 +10,10 @@ import {
     Trash
 } from '../../styles/icons';
 
+type ILikeProps = {
+    isLiked?: boolean;
+};
+
 export const PiuWrapper = styled.div`
     display: flex;
     align-items: flex-start;
@@ -192,8 +196,10 @@ export const CommentIcon = styled(Chat)`
 export const RepiuIcon = styled(ArrowRepeat)`
     ${iconCSS}
 `;
-export const LikeIcon = styled(Heart)`
+export const LikeIcon = styled(Heart)<ILikeProps>`
     ${iconCSS}
+
+    fill: ${(props) => (props.isLiked ? 'red' : 'black')}!important;
 `;
 export const FavoriteIcon = styled(Star)`
     ${iconCSS}
