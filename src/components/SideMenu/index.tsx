@@ -5,6 +5,7 @@ import {
     SideMenuWrapper,
     Menu,
     Option,
+    OptionName,
     HomeIcon,
     SearchIcon,
     NotificationsIcon,
@@ -12,6 +13,8 @@ import {
     DMIcon,
     ConfigurationsIcon,
     ProfileInfos,
+    UserNames,
+    UserUsername,
     ProfilePicture,
     LogOutIcon,
     Names
@@ -32,31 +35,31 @@ const SideMenu: React.FC<SideMenuProps> = ({ user }) => {
             <Menu>
                 <Option>
                     <HomeIcon />
-                    <strong>Início</strong>
+                    <OptionName>Início</OptionName>
                 </Option>
                 <Option>
                     <NotificationsIcon />
-                    <strong>Notificações (2)</strong>
+                    <OptionName>Notificações (2)</OptionName>
                 </Option>
                 <Option>
                     <DMIcon />
-                    <strong>Mensagens (5)</strong>
+                    <OptionName>Mensagens (5)</OptionName>
                 </Option>
                 <Option>
                     <FavoritesIcon />
-                    <strong>Favoritos</strong>
+                    <OptionName>Favoritos</OptionName>
                 </Option>
                 <Option>
                     <ConfigurationsIcon />
-                    <strong>Configurações</strong>
+                    <OptionName>Configurações</OptionName>
                 </Option>
                 <Option>
                     <SearchIcon />
-                    <strong id="menu-search">Buscar</strong>
+                    <OptionName id="menu-search">Buscar</OptionName>
                 </Option>
                 <Option onClick={() => logout()}>
                     <LogOutIcon />
-                    <strong>Sair</strong>
+                    <OptionName>Sair</OptionName>
                 </Option>
             </Menu>
             <ProfileInfos>
@@ -67,8 +70,8 @@ const SideMenu: React.FC<SideMenuProps> = ({ user }) => {
                     height={60}
                 />
                 <Names>
-                    <strong>Lívia Namie</strong>
-                    <span>@livianamie_</span>
+                    <UserNames>Lívia Namie</UserNames>
+                    <UserUsername>@livianamie_</UserUsername>
                 </Names>
             </ProfileInfos>
         </SideMenuWrapper>

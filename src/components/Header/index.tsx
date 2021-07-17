@@ -3,11 +3,15 @@ import { useState } from 'react';
 import {
     Container,
     PageInfo,
+    PageName,
     Logo,
     SearchFeature,
+    SearchButton,
     MoreIcon,
     PopUpWrapper,
+    PopUpInput,
     PopUp,
+    CloseButton,
     CloseIcon,
     UsersList,
     User,
@@ -33,22 +37,20 @@ const Header: React.FC<HeaderProps> = ({ users }) => {
         <Container>
             <PageInfo>
                 <Logo />
-                <strong>Página Inicial</strong>
+                <PageName>Página Inicial</PageName>
             </PageInfo>
 
-            <button id="more" type="submit">
-                <MoreIcon />
-            </button>
+            <MoreIcon />
 
             <SearchFeature>
-                <button type="submit" onClick={openPopUp}>
+                <SearchButton type="submit" onClick={openPopUp}>
                     Buscar
-                </button>
+                </SearchButton>
             </SearchFeature>
 
             <PopUpWrapper isOpen={popUpDisplay}>
                 <PopUp>
-                    <input
+                    <PopUpInput
                         type="text"
                         onChange={(e) => {
                             setSearch(e.target.value);
@@ -88,9 +90,9 @@ const Header: React.FC<HeaderProps> = ({ users }) => {
                         })}
                     </UsersList>
 
-                    <button type="submit" onClick={closePopUp}>
+                    <CloseButton type="submit" onClick={closePopUp}>
                         <CloseIcon />
-                    </button>
+                    </CloseButton>
                 </PopUp>
             </PopUpWrapper>
         </Container>

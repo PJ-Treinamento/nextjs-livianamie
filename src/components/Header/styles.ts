@@ -41,16 +41,16 @@ export const PageInfo = styled.div`
     justify-content: space-between;
 
     width: fit-content;
+`;
 
-    > strong {
-        font-size: 1.4rem;
+export const PageName = styled.strong`
+    font-size: 1.4rem;
 
-        @media (min-width: 800px) {
-            font-size: 1.6rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 2rem;
-        }
+    @media (min-width: 800px) {
+        font-size: 1.6rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 2rem;
     }
 `;
 
@@ -61,68 +61,68 @@ export const SearchFeature = styled.div`
     @media (min-width: 800px) {
         display: flex;
     }
+`;
 
-    > button {
-        width: 12rem;
-        height: 2.5rem;
+export const SearchButton = styled.button`
+    width: 12rem;
+    height: 2.5rem;
 
-        margin-right: 2.5rem;
-        padding: 0.1rem 0.5rem;
+    margin-right: 2.5rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.8rem;
+    box-shadow: 0.2rem 0.2rem 0 0 #fff500;
+
+    cursor: pointer;
+
+    background-color: var(--purple);
+
+    color: var(--yellow);
+    font-weight: bold;
+    text-shadow: 0.1rem 0.1rem 0 #000000;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+
+    overflow: hidden;
+
+    transition: 0.2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
+
+    &::after {
+        background-color: var(--yellow);
         border-radius: 0.8rem;
-        box-shadow: 0.2rem 0.2rem 0 0 #fff500;
-
-        cursor: pointer;
-
-        background-color: var(--purple);
-
-        color: var(--yellow);
-        font-weight: bold;
-        text-shadow: 0.1rem 0.1rem 0 #000000;
-        font-size: 1.3rem;
-        letter-spacing: 0.1rem;
-
-        overflow: hidden;
-
-        transition: 0.2s transform ease-in-out;
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-100%, 0) rotate(0);
+        transition: 0.2s transform ease-out;
         will-change: transform;
-        z-index: 0;
+        z-index: -1;
+    }
+    &:hover::after {
+        transform: translate(0, 0);
+    }
+    &:hover {
+        transform: scale(1.05);
+        will-change: transform;
 
-        &::after {
-            background-color: var(--yellow);
-            border-radius: 0.8rem;
-            content: '';
-            display: block;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            transform: translate(-100%, 0) rotate(0);
-            transition: 0.2s transform ease-out;
-            will-change: transform;
-            z-index: -1;
-        }
-        &:hover::after {
-            transform: translate(0, 0);
-        }
-        &:hover {
-            transform: scale(1.05);
-            will-change: transform;
+        color: var(--darker-purple);
+        box-shadow: 0.2rem 0.2rem 0 0 var(--purple);
+        text-shadow: 0 0 0;
+    }
 
-            color: var(--darker-purple);
-            box-shadow: 0.2rem 0.2rem 0 0 var(--purple);
-            text-shadow: 0 0 0;
-        }
+    @media (min-width: 1200px) {
+        width: 14rem;
+        height: 3rem;
 
-        @media (min-width: 1200px) {
-            width: 14rem;
-            height: 3rem;
+        margin-right: 3.5rem;
+        padding: 0.1rem 1rem;
 
-            margin-right: 3.5rem;
-            padding: 0.1rem 1rem;
-
-            font-size: 1.6rem;
-        }
+        font-size: 1.6rem;
     }
 `;
 
@@ -154,28 +154,30 @@ export const PopUp = styled.div`
 
     border-radius: 0.8rem;
     border: 0.15rem solid #7c00f3;
+`;
 
-    > input {
-        width: 15rem;
-        height: 2.5rem;
+export const CloseButton = styled.button``;
 
-        margin-bottom: 2rem;
-        padding: 0.3rem 0.6rem;
+export const PopUpInput = styled.input`
+    width: 15rem;
+    height: 2.5rem;
 
-        background-color: var(--lighter-purple);
+    margin-bottom: 2rem;
+    padding: 0.3rem 0.6rem;
 
-        border: 0.15rem solid var(--darker-purple);
-        border-radius: 0.8rem;
-        box-shadow: 0.2rem 0.2rem 0 0 var(--yellow);
+    background-color: var(--lighter-purple);
 
-        font-size: 1.1rem;
+    border: 0.15rem solid var(--darker-purple);
+    border-radius: 0.8rem;
+    box-shadow: 0.2rem 0.2rem 0 0 var(--yellow);
 
-        @media (min-width: 1200px) {
-            width: 18rem;
-            height: 3rem;
+    font-size: 1.1rem;
 
-            font-size: 1.3rem;
-        }
+    @media (min-width: 1200px) {
+        width: 18rem;
+        height: 3rem;
+
+        font-size: 1.3rem;
     }
 `;
 

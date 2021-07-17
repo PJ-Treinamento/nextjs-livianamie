@@ -76,26 +76,25 @@ export const Option = styled.div`
         margin-bottom: 3.5rem;
     }
 
-    > strong {
-        display: none;
-        margin-left: 0.7rem;
-
-        font-size: 1rem;
-
-        @media (min-width: 800px) {
-            display: inline;
-            font-size: 1.3rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.6rem;
-            margin-left: 1rem;
-        }
-    }
-
     > #menu-search {
         @media (min-width: 800px) {
             display: none;
         }
+    }
+`;
+export const OptionName = styled.strong`
+    display: none;
+    margin-left: 0.7rem;
+
+    font-size: 1rem;
+
+    @media (min-width: 800px) {
+        display: inline;
+        font-size: 1.3rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.6rem;
+        margin-left: 1rem;
     }
 `;
 export const ProfileInfos = styled.div`
@@ -128,50 +127,51 @@ export const Names = styled.div`
     display: none;
     margin-left: 1rem;
 
-    > strong {
-        font-size: 1.1rem;
-        letter-spacing: 0.1rem;
-
-        padding: 0.2rem;
-
-        cursor: pointer;
-
-        &:hover {
-            color: var(--darker-purple);
-            background: var(--lighter-purple);
-            border-radius: 0.8rem;
-        }
-
-        @media (min-width: 800px) {
-            font-size: 1.3rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.6rem;
-        }
-    }
-    > span {
-        font-size: 0.9rem;
-
-        padding: 0.2rem;
-
-        &:hover {
-            color: var(--darker-purple);
-            background: var(--lighter-purple);
-            border-radius: 0.8rem;
-        }
-
-        @media (min-width: 800px) {
-            font-size: 1.2rem;
-        }
-        @media (min-width: 1200px) {
-            font-size: 1.4rem;
-        }
-    }
-
     @media (min-width: 800px) {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+    }
+`;
+
+export const UserNames = styled.strong`
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+
+    padding: 0.2rem;
+
+    cursor: pointer;
+
+    &:hover {
+        color: var(--darker-purple);
+        background: var(--lighter-purple);
+        border-radius: 0.8rem;
+    }
+
+    @media (min-width: 800px) {
+        font-size: 1.3rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.6rem;
+    }
+`;
+
+export const UserUsername = styled.span`
+    font-size: 0.9rem;
+
+    padding: 0.2rem;
+
+    &:hover {
+        color: var(--darker-purple);
+        background: var(--lighter-purple);
+        border-radius: 0.8rem;
+    }
+
+    @media (min-width: 800px) {
+        font-size: 1.2rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.4rem;
     }
 `;
 

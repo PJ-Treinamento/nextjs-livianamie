@@ -1,7 +1,13 @@
 import { IPiu, IUser } from 'models';
 import { useState } from 'react';
 import Piu from '../Piu';
-import { TimelineWrapper, Tab, TimelineSections } from './styles';
+import {
+    TimelineWrapper,
+    Tab,
+    TabInput,
+    TimelineSections,
+    Section
+} from './styles';
 
 type ArrayPiuProps = {
     pius: IPiu[];
@@ -16,10 +22,10 @@ const Timeline: React.FC<ArrayPiuProps> = ({ pius, setTimelinePius, user }) => {
         <TimelineWrapper>
             <Tab>
                 <TimelineSections>
-                    <p id="pius-section">Pius</p>
-                    <p>Pius e repostas</p>
+                    <Section id="pius-section">Pius</Section>
+                    <Section>Pius e repostas</Section>
                 </TimelineSections>
-                <input
+                <TabInput
                     type="text"
                     onChange={(e) => {
                         setSearch(e.target.value);

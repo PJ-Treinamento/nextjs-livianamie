@@ -8,7 +8,9 @@ import {
     Text,
     Textarea,
     Counter,
-    CounterValue
+    ErrorText,
+    CounterValue,
+    PostButton
 } from './styles';
 import ProfileImage from '../../../public/profile.svg';
 
@@ -80,13 +82,13 @@ const NewPiu: React.FC<PiuProps> = ({ pius, setTimelinePius, user }) => {
                     placeholder="O que você está pensando?"
                 />
                 <Counter>
-                    <span>{counterErrorText}</span>
+                    <ErrorText>{counterErrorText}</ErrorText>
                     <CounterValue isWrong={isWrong}>
                         {newPiuText.trim().length}
                     </CounterValue>
                 </Counter>
             </Text>
-            <button
+            <PostButton
                 type="submit"
                 onClick={() => {
                     if (
@@ -102,7 +104,7 @@ const NewPiu: React.FC<PiuProps> = ({ pius, setTimelinePius, user }) => {
                 }}
             >
                 Piu
-            </button>
+            </PostButton>
         </NewPiuWrapper>
     );
 };
