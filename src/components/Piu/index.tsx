@@ -36,6 +36,7 @@ const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu, user }) => {
     const { '@Piupiuwer:username': username } = parseCookies();
     const [likeCount, setLikeCount] = useState(piu.likes.length);
     const [likeStatus, setLikeStatus] = useState<boolean>();
+    const [favoriteStatus, setFavoriteStatus] = useState<boolean>();
 
     let profileImage = piu.user.photo;
     if (profileImage === '.....') profileImage = ProfileImage;
@@ -50,8 +51,42 @@ const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu, user }) => {
         return likedPius.map((piuLike) => piuLike.id);
     }, [pius, user.username]);
 
+    const favoritedPiusId = useMemo(() => {
+        return user.favorites.map((favoritedPiu) => favoritedPiu.id);
+    }, [user.favorites]);
+
+    const handleFavorite = useCallback(() => {
+        pius.forEach((piuApi: IPiu) => {
+            if (id === piuApi.id) {
+                if (favoriteStatus === true) {
+                    const unfavorite = async () => {
+                        setFavoriteStatus(false);
+                        await api.post(
+                            '/pius/unfavorite',
+                            { piu_id: piuApi.id },
+                            { headers: { Authorization: `Bearer ${token}` } }
+                        );
+                    };
+                    unfavorite();
+                } else {
+                    const favorite = async () => {
+                        await api.post(
+                            '/pius/favorite',
+                            { piu_id: piuApi.id },
+                            { headers: { Authorization: `Bearer ${token}` } }
+                        );
+                        setFavoriteStatus(true);
+                    };
+                    favorite();
+                }
+            }
+        });
+        return favoriteStatus;
+    }, [favoriteStatus, id, pius, token]);
+
     useEffect(() => {
         setLikeStatus(likedPiusId.includes(piu.id));
+        setFavoriteStatus(favoritedPiusId.includes(piu.id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -133,7 +168,10 @@ const Piu: React.FC<PiuProps> = ({ pius, setTimelinePius, piu, user }) => {
                         <LikeIcon isLiked={likeStatus} onClick={handleLike} />{' '}
                         {likeCount}
                     </Status>
-                    <FavoriteIcon />
+                    <FavoriteIcon
+                        isFavorited={favoriteStatus}
+                        onClick={handleFavorite}
+                    />
                     {piu.user.username === username ? (
                         <TrashIcon onClick={handleDelete} />
                     ) : (

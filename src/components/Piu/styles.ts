@@ -14,6 +14,10 @@ type ILikeProps = {
     isLiked?: boolean;
 };
 
+type IFavoriteProps = {
+    isFavorited?: boolean;
+};
+
 export const PiuWrapper = styled.div`
     display: flex;
     align-items: flex-start;
@@ -201,8 +205,10 @@ export const LikeIcon = styled(Heart)<ILikeProps>`
 
     fill: ${(props) => (props.isLiked ? 'red' : 'black')}!important;
 `;
-export const FavoriteIcon = styled(Star)`
+export const FavoriteIcon = styled(Star)<IFavoriteProps>`
     ${iconCSS}
+
+    fill: ${(props) => (props.isFavorited ? '#FFB500' : 'black')}!important;
 `;
 export const ShareIcon = styled(Share)`
     ${iconCSS}
